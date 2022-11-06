@@ -13,8 +13,9 @@ const createUser = (req, res) => {
     //Acessar informação que vem do body da requisição
     const client = req.body.client;
     const email = req.body.email;
+    const phoneNumber = req.body.phoneNumber
 
-if(!client|| !email) {
+if(!client || !email || !phoneNumber) {
     return res.status(404).send({
         "message": "Informações incompletas", 
         "statusCode": 404
@@ -25,8 +26,9 @@ if(!client|| !email) {
 const newUser = {
     "id": Math.random().toString(32).substring(2, 6),
     "addedAt": new Date(),
-    "title": client,
-    "genre": email
+    "client": client,
+    "email": email,
+    "phoneNumber": phoneNumber,
 }
 
 //Adicionar o novo usuário à lista já existente
@@ -53,20 +55,22 @@ const deleteUserById = (req, res) => {
         users
     }]);
 };
-                //Atualizar o email do usuário
+                //Atualizar o contato do usuário
 const updateUserById = (req, res) => {
     // pegar os dados da requisição
     const requestedId = req.params.id;
     const newEmail = req.body.email;
+    const newPhoneNumber = req.body.phoneNumber;
 
     // achar o item da lista que tem o mesmo id
     const filteredUser = users.find(user => user.id == requestedId);
 
     // o título do post filtrado seja igual ao título que vem da requisição
     filteredUser.email = newEmail;
+    filteredUser.phoneNumber = newPhoneNumber;
 
     res.status(200).send({
-        "mensagem": "Email atualizado com sucesso",
+        "mensagem": "Contato atualizado com sucesso",
         filteredUser
     });
 };
