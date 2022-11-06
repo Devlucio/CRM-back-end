@@ -1,0 +1,32 @@
+[
+    {
+        "id": "d1u41m",
+        "addedAt": "2022-02-24T21:00:21.270Z",
+        "client": "client-01",
+        "email": "cleint01@crm.com"
+    },
+    {
+        "id": "uour5n",
+        "addedAt": "2022-02-24T20:58:29.126Z",
+        "client": "client-02",
+        "email": "cleint02@crm.com"
+    },
+    {
+        "id": "3qtje8",
+        "addedAt": "2022-02-24T20:59:33.868Z",
+        "client": "client-03",
+        "email": "cleint03@crm.com"
+    },
+    {
+        "id": "h9bogv",
+        "addedAt": "2022-02-24T20:59:57.747Z",
+        "client": "client-04",
+        "email": "cleint04@crm.com"
+    },
+    {
+        "id": "mhm1gh",
+        "addedAt": "2022-02-24T21:00:41.214Z",
+        "client": "client-05",
+        "email": "cleint05@crm.com"
+    }
+]
