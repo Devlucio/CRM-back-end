@@ -1,46 +1,40 @@
     //Acessar o arquivos de usuário
-const users = require("../models/user.json");
+const users = require("../models/userSchema");
+const UserSchema = require("../models/userSchema");
+const bcrypt = require('bcrypt');
 
 //Ver todos os usuários
-const getALL = (req, res) => {
-    //Gerenciar o que acontece na req e na res
-    res.status(200).send(users);
-}
+const getAll = async (req, res) => {
+    UserSchema.find(function (err, users) {
+      if(err) {
+        res.status(500).send({ message: err.message })
+      }
+        res.status(200).send(users)
+    }) 
+  };
 
 
-            //Adicionar usuário
-const createUser = (req, res) => {    
-    //Acessar informação que vem do body da requisição
-    const client = req.body.client;
-    const email = req.body.email;
-    const phoneNumber = req.body.phoneNumber
+          //Adicionar usuário
+const createUser = async (req, res) => {
+  //Hasherisar senha
+  const hashedPassword = bcrypt.hashSync(req.body.password, 10)
+    req.body.password = hashedPassword
+  try {
+    //Acessar informações que vem do body da requisição
+    const newUser = new UserSchema(req.body);
 
-if(!client || !email || !phoneNumber) {
-    return res.status(404).send({
-        "message": "Informações incompletas", 
-        "statusCode": 404
-    });
-}
+    //Criar novo usuário
+    const savedUser = await newUser.save();
 
-//Construir um objeto com as informações do novo usuário
-const newUser = {
-    "id": Math.random().toString(32).substring(2, 6),
-    "addedAt": new Date(),
-    "client": client,
-    "email": email,
-    "phoneNumber": phoneNumber,
-}
-
-//Adicionar o novo usuário à lista já existente
-users.push(newUser);
-
-//Envio a resposta de usuário cadastrado com sucesso
-res.status(201).send({
-    "message": "Novo usuário adicionado com sucesso", 
-    newUser
-});   
-}
-
+    //Enviar uma res
+    res.status(201).send({
+      "message": "Usuário criado com sucesso",
+      savedUser
+    })
+  } catch(e) {
+    console.error(e)
+  }
+};
                 //Deletar um usuário
 const deleteUserById = (req, res) => {
     const requestedId = req.params.id;

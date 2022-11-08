@@ -1,6 +1,7 @@
 //Importar modulo ou pacote
 const express = require("express");
 const cors = require("cors");
+require('dotenv-safe').config();
 
 //instaciar pacote (deixar disponível)
 const app = express();

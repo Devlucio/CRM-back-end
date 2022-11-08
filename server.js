@@ -2,7 +2,7 @@
 const app = require ('./src/apps')
 
 //Porta do servidor
-const PORT = 8000
+const PORT = process.env.PORT
 
 console.log("EXPRESS instanciado e exportado do arquivo app.js.")
 
