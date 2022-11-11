@@ -1,18 +1,15 @@
-    //Acessar o arquivos de usuário
-const users = require("../models/userSchema");
 const UserSchema = require("../models/userSchema");
 const bcrypt = require('bcrypt');
 
-//Ver todos os usuários
+          //Ver todos os usuários
 const getAll = async (req, res) => {
-    UserSchema.find(function (err, users) {
-      if(err) {
-        res.status(500).send({ message: err.message })
-      }
-        res.status(200).send(users)
-    }) 
-  };
-
+  UserSchema.find(function (err, users) {
+    if(err) {
+      res.status(500).send({ message: err.message })
+    }
+      res.status(200).send(users)
+  }) 
+};
 
           //Adicionar usuário
 const createUser = async (req, res) => {
@@ -35,8 +32,9 @@ const createUser = async (req, res) => {
     console.error(e)
   }
 };
+
                 //Deletar um usuário
-const deleteUserById = (req, res) => {
+const deleteUserById = async (req, res) => {
     const requestedId = req.params.id;
     const filteredUser = users.find(user => user.id == requestedId);
 
@@ -50,7 +48,7 @@ const deleteUserById = (req, res) => {
     }]);
 };
                 //Atualizar o contato do usuário
-const updateUserById = (req, res) => {
+const updateUserById = async (req, res) => {
     // pegar os dados da requisição
     const requestedId = req.params.id;
     const newEmail = req.body.email;
@@ -69,11 +67,9 @@ const updateUserById = (req, res) => {
     });
 };
 
-
-//Exportar variavel
 module.exports = {
-    getALL,
-    createUser,    
-    deleteUserById,
-    updateUserById
-}
+  getAll,
+  createUser,
+  deleteUserById,
+  updateUserById
+};

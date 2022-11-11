@@ -1,7 +1,6 @@
-//Importar modulo ou pacote
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
-const MONGODB_URI = process.env.MONGODB_URI;
+const MONGODB_URI = process.env.MONGODB_URI
 
 const connect = async () => {
     try {
@@ -9,15 +8,12 @@ const connect = async () => {
             useNewUrlParser: true,
             useUnifiedTopology: true
         })
-        console.log("Banco conectado :)")
+        console.log("Banco conectado")
     } catch (error) {
         console.error("Erro: ", error.message)
     }
-} 
+}
 
-const message = console.log("Olá, estou aqui (datebase)")
-
-//exportar modulo
-module.exports= {
+module.exports = {
     connect
 }

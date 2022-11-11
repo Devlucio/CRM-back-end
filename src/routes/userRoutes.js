@@ -1,22 +1,22 @@
- //Importar modulo ou pacote
- const express = require("express");
- const router = express.Router();
+const express = require("express");
+const router = express.Router();
 
- //Importar modulo local
-const controllers = require ("../controllers/userControllers");
-//const controllers = require ("../controllers/clientControllers");
+const controller = require("../controllers/userController");
+
+//router.get("/all", controller.getAll);
+router.post("/create", controller.createUser);
 
         //Definir a rota e o verbo
     //Visualizar todos usuários
- router.get("/all", controllers.getALL);
+ router.get("/all", controller.getAll);
     //Criar usuário
- router.post("/create", controllers.createUser);
+ router.post("/create", controller.createUser);
     //Adicinar Cliente
  //router.post("/createClient", controllers.createUser);
     //Excluir um usuário
-router.delete("/delete/:id", controllers.deleteUserById);
+router.delete("/delete/:id", controller.deleteUserById);
     //Atualizar email do usuário
-router.patch("/updateEmail/:id", controllers.updateUserById);
+router.patch("/updateEmail/:id", controller.updateUserById);
 
-
- module.exports = router
+module.exports = router;
+ 
