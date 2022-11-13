@@ -3,7 +3,8 @@ const bcrypt = require('bcrypt');
 
           //Ver todos os usuários
 const getAll = async (req, res) => {
-  UserSchema.find(function (err, users) {
+  UserSchema.find(function (err, users) 
+  {
     if(err) {
       res.status(500).send({ message: err.message })
     }
