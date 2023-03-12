@@ -17,15 +17,8 @@ const userRoutes = require('./routes/userRoutes');
 //Definir rota principal
 app.use("/users", userRoutes);
 
-
-
-
 //Inicializando o modulo do banco de dados
 db.connect();
-
-
-
-
 
 //Exportar modulo
 module.exports = app;
