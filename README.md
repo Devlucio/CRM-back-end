@@ -210,7 +210,7 @@ Agora sim, podemos aplicar o método verify e verificar se tudo está pegando co
 jwt.verify(token, SECRET, function(erro) {
   if (err) {
     return res.status(403).send('Não autorizado');
-}
+})
 ~~~
 
  
